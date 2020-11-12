@@ -1,6 +1,6 @@
 package com.kook1932.springboot.web;
 
-import com.kook1932.springboot.service.posts.PostsService;
+import com.kook1932.springboot.service.PostsService;
 import com.kook1932.springboot.web.dto.PostsResponseDto;
 import com.kook1932.springboot.web.dto.PostsSaveRequestDto;
 import com.kook1932.springboot.web.dto.PostsUpdateRequestDto;
