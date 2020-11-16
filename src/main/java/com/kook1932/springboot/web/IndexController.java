@@ -1,5 +1,6 @@
 package com.kook1932.springboot.web;
 
+import com.kook1932.springboot.config.auth.LoginUser;
 import com.kook1932.springboot.config.auth.dto.SessionUser;
 import com.kook1932.springboot.service.PostsService;
 import com.kook1932.springboot.web.dto.PostsResponseDto;
@@ -18,10 +19,10 @@ public class IndexController {
     private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model, @LoginUser SessionUser user){
+        // 기존에 (SessionUser) httpSession.getAttribute("user")로 가져오던 세션 정보 값이 개선되었다.
+        // 이제는 어느 컨트롤러든지 @LoginUser만 사용하면 세션 정보를 가져올 수 있게 되었다.
         model.addAttribute("posts", postsService.findAllDesc());
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
-        // CustomOAuth2UserService에서 로그인 성공 시 세션에 SessionUser를 저장하도록 구성
 
         if(user != null){
             model.addAttribute("userName", user.getName());
